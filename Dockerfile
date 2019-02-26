@@ -1,4 +1,4 @@
-ARG HA_VERSION=0.86.1
+ARG HA_VERSION=0.88.1
 FROM homeassistant/home-assistant:${HA_VERSION}
 
 # Assign these arguments for appropriate wheel from https://github.com/evdcush/TensorFlow-wheels
