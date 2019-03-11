@@ -12,6 +12,10 @@ ENV PY_VERSION=${PY_VERSION}
 ENV CPU=${CPU}
 RUN if [ "${PY_VERSION}" = "37" ] ; \
     then \
+        add-apt-repository 'deb http://http.us.debian.org/debian testing main non-free contrib'; \
+        add-apt-repository 'deb-src http://http.us.debian.org/debian testing main non-free contrib'; \
+        apt-get install -y -t testing libstdc++6; \
+        apt-get install -y -t testing libc6; \
         pip3 install --no-cache-dir https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-${TF_VERSION}.0-py${PY_VERSION}-cpu-${CPU}/tensorflow-${TF_VERSION}.0-cp${PY_VERSION}-cp${PY_VERSION}m-linux_x86_64.whl; \
     else \
         pip3 install --no-cache-dir https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-${TF_VERSION}-cpu-${CPU}/tensorflow-${TF_VERSION}.0-cp${PY_VERSION}-cp${PY_VERSION}m-linux_x86_64.whl; \
