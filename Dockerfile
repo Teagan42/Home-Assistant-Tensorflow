@@ -10,10 +10,14 @@ ENV HA_VERSION=${HA_VERSION}
 ENV TF_VERSION=${TF_VERSION}
 ENV PY_VERSION=${PY_VERSION}
 ENV CPU=${CPU}
-
-RUN pip3 install --no-cache-dir https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-${TF_VERSION}-cpu-${CPU}/tensorflow-${TF_VERSION}.0-cp${PY_VERSION}-cp${PY_VERSION}m-linux_x86_64.whl; \
-    pip3 install opencv-python
-
+RUN if [ "${PY_VERSION}" = "37" ] ; \
+    then \
+        pip3 install --no-cache-dir https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-${TF_VERSION}-py${PY_VERSION}-cpu-${CPU}/tensorflow-${TF_VERSION}.0-cp${PY_VERSION}-cp${PY_VERSION}m-linux_x86_64.whl; \
+    else \
+        pip3 install --no-cache-dir https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-${TF_VERSION}-cpu-${CPU}/tensorflow-${TF_VERSION}.0-cp${PY_VERSION}-cp${PY_VERSION}m-linux_x86_64.whl; \
+    fi \
+    pip3 install opency-python
+    
 RUN apt-get update; \
     apt-get install -y cmake
 
