@@ -16,7 +16,7 @@ RUN if [ "${PY_VERSION}" = "37" ] ; \
     else \
         pip3 install --no-cache-dir https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-${TF_VERSION}-cpu-${CPU}/tensorflow-${TF_VERSION}.0-cp${PY_VERSION}-cp${PY_VERSION}m-linux_x86_64.whl; \
     fi; \
-    pip3 install opency-python
+    pip3 install opencv-python
     
 RUN apt-get update; \
     apt-get install -y cmake
