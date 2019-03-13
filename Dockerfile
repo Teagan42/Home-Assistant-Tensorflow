@@ -1,6 +1,5 @@
-FROM ubuntu:18.04
-
 ARG HA_VERSION=0.88.1
+FROM homeassistant/home-assistant:${HA_VERSION}
 
 # Install python deps
 RUN apt-get update; \
@@ -27,9 +26,7 @@ RUN apt-get update; \
     bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package; \
     ./bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg; \
     ls -t /tmp/tensorflow_pkg/tensorflow*.whl | head -1 | pip3 install ; \
-    pip3 install opencv-python
+    pip3 install opencv-python; \
+    apt-get install cmake;
 
-# Install Home-Assistant
-RUN python3 -m pip install homeassistant==${HA_VERSION}
-
-CMD [ "python3", "-m", "homeassistant", "--config", "/config" ]
+CMD [ "python", "-m", "homeassistant", "--config", "/config" ]
