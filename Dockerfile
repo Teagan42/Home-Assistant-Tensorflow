@@ -1,32 +1,17 @@
 ARG HA_VERSION=0.88.1
 FROM homeassistant/home-assistant:${HA_VERSION}
 
-# Install python deps
+# Install Bazel
 RUN apt-get update; \
-    apt-get install -y python3.7-dev python3-pip python3 python
+    apt-get install -y openjdk-8-jdk curl gnupg gnupg2 gnupg1 git software-properties-common; \
+    add-apt-repository "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8"; \
+    curl https://bazel.build/bazel-release.pub.gpg | apt-key add -; \
+    apt-get update; \
+    apt-get install -y bazel
 
-RUN pip3 install pip pip3 six numpy wheel mock; \
-    pip3 install keras_applications==1.0.6 --no-deps; \
-    pip3 install keras_preprocessing==1.0.5 --no-deps
-
-# Install Bezel
-RUN apt-get install -y pkg-config zip g++ zlib1g-dev unzip python curl bash-completion; \
-    cd /tmp; \
-    curl -sLO https://github.com/bazelbuild/bazel/releases/download/0.21.0/bazel_0.21.0-linux-x86_64.deb && dpkg -i bazel_0.21.0-linux-x86_64.deb
-
-# Install Tensorflow
-RUN apt-get update; \
-    apt-get install -y git gcc-7 g++-7 gcc-8 g++-8; \
-    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 100 --slave /usr/bin/g++ g++ /usr/bin/g++-8; \
-    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7; \
-    update-alternatives --config gcc; \
-    cd /tmp; \
-    git clone https://github.com/tensorflow/tensorflow.git; \
-    cd tensorflow; \
-    bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package; \
-    ./bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg; \
-    ls -t /tmp/tensorflow_pkg/tensorflow*.whl | head -1 | pip3 install ; \
-    pip3 install opencv-python; \
-    apt-get install cmake;
+# Install Tensorflow Whell
+RUN cd /temp; \
+    curl -LO https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.12.0-py37-cpu-westmere/tensorflow-1.12.0-cp37-cp37m-linux_x86_64.whl; \
+    pip3 install --no-cache-dir tensorflow-1.12.0-cp37-cp37m-linux_x86_64.whl
 
 CMD [ "python", "-m", "homeassistant", "--config", "/config" ]
