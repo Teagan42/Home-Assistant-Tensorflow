@@ -1,16 +1,14 @@
 FROM ubuntu:18.04
 
-ARG PY_DEV_VERSION=3.7
-ARG PY_VERSION=3
 ARG HA_VERSION=0.88.1
 
 # Install python deps
 RUN apt-get update; \
-    apt-get install -y python${PY_DEV_VERSION}-dev python${PY_VERSION}-pip python${PY_VERSION}
+    apt-get install -y python37-dev python3-pip python3
 
-RUN pip${PY_VERSION} install pip six numpy wheel mock; \
-    pip${PY_VERSION} install keras_applications==1.0.6 --no-deps; \
-    pip${PY_VERSION} install keras_preprocessing==1.0.5 --no-deps
+RUN pip3 install pip six numpy wheel mock; \
+    pip3 install keras_applications==1.0.6 --no-deps; \
+    pip3 install keras_preprocessing==1.0.5 --no-deps
 
 # Install Bezel
 RUN apt-get install -y pkg-config zip g++ zlib1g-dev unzip python curl bash-completion; \
@@ -28,12 +26,10 @@ RUN apt-get update; \
     cd tensorflow; \
     bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package; \
     ./bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg; \
-    ls -t /tmp/tensorflow_pkg/tensorflow*.whl | head -1 | pip{PY_VERSION} install ; \
-    pip${PY_VERSION} install opencv-python
+    ls -t /tmp/tensorflow_pkg/tensorflow*.whl | head -1 | pip3 install ; \
+    pip3 install opencv-python
 
 # Install Home-Assistant
-RUN python${PY_VERSION} -m pip install homeassistant==${HA_VERSION}
+RUN python3 -m pip install homeassistant==${HA_VERSION}
 
-ARG PYTHON_EXE=python${PY_VERSION}
-
-CMD [ ${PYTHON_EXE}, "-m", "homeassistant", "--config", "/config" ]
+CMD [ "python3", "-m", "homeassistant", "--config", "/config" ]
