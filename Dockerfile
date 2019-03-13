@@ -4,9 +4,9 @@ ARG HA_VERSION=0.88.1
 
 # Install python deps
 RUN apt-get update; \
-    apt-get install -y python3.7-dev python3-pip python3
+    apt-get install -y python3.7-dev python3-pip python3 python
 
-RUN pip3 install pip six numpy wheel mock; \
+RUN pip3 install pip pip3 six numpy wheel mock; \
     pip3 install keras_applications==1.0.6 --no-deps; \
     pip3 install keras_preprocessing==1.0.5 --no-deps
 
@@ -30,6 +30,6 @@ RUN apt-get update; \
     pip3 install opencv-python
 
 # Install Home-Assistant
-RUN python3 -m pip install homeassistant==${HA_VERSION}
+RUN python3 -m pip3 install homeassistant==${HA_VERSION}
 
 CMD [ "python3", "-m", "homeassistant", "--config", "/config" ]
