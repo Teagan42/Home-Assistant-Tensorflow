@@ -30,6 +30,6 @@ RUN apt-get update; \
     pip3 install opencv-python
 
 # Install Home-Assistant
-RUN python3 -m pip3 install homeassistant==${HA_VERSION}
+RUN python3 -m pip install homeassistant==${HA_VERSION}
 
 CMD [ "python3", "-m", "homeassistant", "--config", "/config" ]
