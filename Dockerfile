@@ -14,7 +14,7 @@ RUN pip${PY_VERSION} install pip six numpy wheel mock; \
 
 # Install Bezel
 RUN apt-get install -y pkg-config zip g++ zlib1g-dev unzip python curl; \
-    cd /tmp;
+    cd /tmp; \
     curl -sLO https://github.com/bazelbuild/bazel/releases/download/0.21.0/bazel_0.21.0-linux-x86_64.deb && dpkg -i bazel_0.21.0-linux-x86_64.deb
 
 # Install Tensorflow
