@@ -32,6 +32,6 @@ RUN apt-get update; \
     pip${PY_VERSION} install opencv-python
 
 # Install Home-Assistant
-RUN python${PY_VERSION} -m pip${PY_VERSION} install homeassistant==${HA_VERSION}
+RUN python${PY_VERSION} -m pip install homeassistant==${HA_VERSION}
 
 CMD [ "python", "-m", "homeassistant", "--config", "/config" ]
