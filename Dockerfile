@@ -34,4 +34,4 @@ RUN apt-get update; \
 # Install Home-Assistant
 RUN python${PY_VERSION} -m pip install homeassistant==${HA_VERSION}
 
-CMD [ "python", "-m", "homeassistant", "--config", "/config" ]
+CMD [ "python${PY_VERSION}", "-m", "homeassistant", "--config", "/config" ]
