@@ -20,11 +20,7 @@ VOLUME /config
 WORKDIR /usr/src/app
 
 RUN apt-get update && \
-    apt-get install -y curl ldap-utils git vim \
-     libasound2 alsa-utils alsa-oss pciutils \
-     autoconf default-libmysqlclient-dev libmysqlclient-dev \
-     libpq-dev gcc musl-dev postgresql-server-dev-all\
-     unzip
+    apt-get install -y curl ldap-utils git vim
 
 RUN git clone --branch ${HA_VERSION} https://www.github.com/home-assistant/home-assistant . && \
     /bin/bash virtualization/Docker/setup_docker_prereqs && \
