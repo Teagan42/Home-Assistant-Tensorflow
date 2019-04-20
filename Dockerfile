@@ -32,4 +32,8 @@ RUN cd /tmp; \
     pip3 install --no-cache-dir tensorflow-1.12.0-cp37-cp37m-linux_x86_64.whl; \
     pip3 install opencv-python 
 
+COPY tensorflow_setup.sh tensorflow_setup.sh
+
+RUN /bin/bash tensorflow_setup.sh
+
 CMD [ "python", "-m", "homeassistant", "--config", "/config" ]
