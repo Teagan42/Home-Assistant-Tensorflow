@@ -3,12 +3,12 @@ CONFIG_DIR=${1:-"/config"}
 
 cd /tmp
 
-apt-get update && apt-get install -fy git unzip vim
+apt-get  update && apt-get install -fy git unzip vim
 
 # Install LIBC6
 curl -OL http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6_2.27-3ubuntu1_amd64.deb
 curl -OL http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6-dev_2.27-3ubuntu1_amd64.deb
-http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc-bin_2.27-3ubuntu1_amd64.deb
+curl -OL http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc-bin_2.27-3ubuntu1_amd64.deb
 
 apt-get install -fy ./libc-bin_2.27-3ubuntu1_amd64.deb
 apt-get install -fy ./libc6_2.27-3ubuntu1_amd64.deb
