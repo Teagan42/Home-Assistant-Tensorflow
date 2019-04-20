@@ -34,6 +34,6 @@ RUN cd /tmp; \
 
 COPY startup.sh startup.sh
 
-ENTRYPOINT ["startup.sh"]
+ENTRYPOINT ["./startup.sh"]
 
 CMD [ "python", "-m", "homeassistant", "--config", "/config" ]
