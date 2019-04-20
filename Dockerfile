@@ -32,28 +32,6 @@ RUN cd /tmp; \
     pip3 install --no-cache-dir $(find tensorflow*.whl) && \
     pip3 install opencv-python 
 
-RUN cd /tmp; \
-    curl -OL http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6_2.27-3ubuntu1_amd64.deb && \
-    curl -OL http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6-dev_2.27-3ubuntu1_amd64.deb && \
-    curl -OL http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc-bin_2.27-3ubuntu1_amd64.deb & \
-    apt install -yf ./libc-bin_2.27-3ubuntu1_amd64.deb ./libc6_2.27-3ubuntu1_amd64.deb ./libc6-dev_2.27-3ubuntu1_amd64.deb && \
-    git clone --depth 1 https://github.com/tensorflow/models.git tensorflow-models && \
-    curl -OL https://github.com/google/protobuf/releases/download/v3.4.0/protoc-3.4.0-linux-x86_64.zip && \
-    unzip -a protoc-3.4.0-linux-x86_64.zip -d protobuf && \
-    mv protobuf/bin /tmp/tensorflow-models/research && \
-    cd /tmp/tensorflow-models/research/ && \
-    ./bin/protoc object_detection/protos/*.proto --python_out=. && \
-    mdkri -p /opt/tensorflow && \
-    rm -rf /opt/tensorflow/object_detection && \
-    mkdir -p /opt/tensorflow/object_detection && \
-    touch /opt/tensorflow/object_detection/__init__.py && \
-    mv object_detection/data /opt/tensorflow/object_detection && \
-    mv object_detection/utils /opt/tensorflow/object_detection && \
-    mv object_detection/protos /opt/tensorflow/object_detection
-
-
 COPY tensorflow_setup.sh tensorflow_setup.sh
-
-RUN /bin/bash tensorflow_setup.sh
 
 CMD [ "python", "-m", "homeassistant", "--config", "/config" ]
