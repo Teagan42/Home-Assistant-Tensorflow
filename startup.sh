@@ -33,4 +33,4 @@ echo "Cleaning up"
 rm -rf /tmp/*
 
 cd ${WORK_DIR}
-exec python -m homeassistant --config ${CONFIG_DIR}
+python -m homeassistant --config ${CONFIG_DIR}
