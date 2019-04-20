@@ -20,7 +20,7 @@ VOLUME /config
 WORKDIR /usr/src/app
 
 RUN apt-get update && \
-    apt-get install -y curl ldap-utils git vim
+    apt-get install -y curl ldap-utils git vim curl unzip
 
 RUN git clone --branch ${HA_VERSION} https://www.github.com/home-assistant/home-assistant . && \
     /bin/bash virtualization/Docker/setup_docker_prereqs && \
