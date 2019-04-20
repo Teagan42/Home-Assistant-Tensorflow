@@ -32,6 +32,6 @@ RUN cd /tmp; \
     pip3 install --no-cache-dir $(find tensorflow*.whl) && \
     pip3 install opencv-python 
 
-COPY tensorflow_setup.sh tensorflow_setup.sh
+COPY startup.sh startup.sh
 
-CMD [ "python", "-m", "homeassistant", "--config", "/config" ]
+CMD [ "./startup.sh", "/usr/src/app", "/config" ]
