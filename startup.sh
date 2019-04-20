@@ -1,6 +1,4 @@
 # Change this path to your config directory
-export DEBIAN_FRONTEND=noninteractive
-
 CONFIG_DIR=${1:-"/config"}
 
 cd /tmp
