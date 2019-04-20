@@ -1,6 +1,5 @@
 # Change this path to your config directory
-WORK_DIR=${1:-/usr/src/app}
-CONFIG_DIR=${2:-@/config}
+CONFIG_DIR=${1:-"/config"}
 
 cd /tmp
 
