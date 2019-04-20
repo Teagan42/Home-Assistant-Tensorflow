@@ -5,7 +5,7 @@ WORK_DIR=${2:="/usr/src/app"}
 cd /tmp
 
 apt-get update
-apt-get install -fy libc6 libc6-dev libc-bin git unzip
+apt-get install -fy libc6 libc6-dev libc-bin git unzip ldap-utils
 
 # Clone the latest code from GitHub
 /usr/bin/git clone --depth 1 https://github.com/tensorflow/models.git tensorflow-models
