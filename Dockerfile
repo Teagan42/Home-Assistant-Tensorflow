@@ -5,6 +5,7 @@
 FROM python:3.6
 
 ARG HA_VERSION=0.88.1
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Uncomment any of the following lines to disable the installation.
 ENV INSTALL_TELLSTICK no

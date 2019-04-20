@@ -1,10 +1,12 @@
 # Change this path to your config directory
+export DEBIAN_FRONTEND=noninteractive
+
 CONFIG_DIR=${1:-"/config"}
 
 cd /tmp
 
-# Install LIBC6
-apt-get install -fy libc6 libc6-dev libc6-dev-bin libc-bin git unzip
+apt-get update
+apt-get install -fy libc6 libc6-dev libc-bin git unzip
 
 # Clone the latest code from GitHub
 /usr/bin/git clone --depth 1 https://github.com/tensorflow/models.git tensorflow-models
