@@ -40,6 +40,3 @@ mv object_detection/protos ${CONFIG_DIR}/tensorflow/object_detection
 echo "Cleaning up"
 rm -rf /tmp/*
 
-# Starting
-cd ${WORK_DIR}
-python -m homeassistant --config /config
