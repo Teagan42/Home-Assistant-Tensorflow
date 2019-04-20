@@ -1,5 +1,6 @@
 # Change this path to your config directory
 CONFIG_DIR=${1:-"/config"}
+WORK_DIR=${2:="/usr/src/app"}
 
 cd /tmp
 
@@ -31,3 +32,5 @@ mv object_detection/protos ${CONFIG_DIR}/tensorflow/object_detection
 echo "Cleaning up"
 rm -rf /tmp/*
 
+cd ${WORK_DIR}
+exec "python -m homeassistant --config ${CONFIG_DIR}"

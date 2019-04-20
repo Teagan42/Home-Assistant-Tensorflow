@@ -35,6 +35,6 @@ RUN cd /tmp; \
 
 COPY startup.sh startup.sh
 
-ENTRYPOINT [ "/bin/bash", "/usr/src/app/startup.sh", "/config" ]
+CMD [ "/bin/bash", "/usr/src/app/startup.sh", "/config", "/usr/src/app" ]
 
-CMD [ "python", "-m", "homeassistant", "--config", "/config" ]
+#CMD [ "python", "-m", "homeassistant", "--config", "/config" ]
