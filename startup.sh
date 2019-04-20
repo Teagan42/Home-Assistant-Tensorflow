@@ -8,9 +8,9 @@ curl -OL http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6_2.27-3ubuntu1_
 curl -OL http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6-dev_2.27-3ubuntu1_amd64.deb
 curl -OL http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc-bin_2.27-3ubuntu1_amd64.deb
 
-apt-get install -fy ./libc-bin_2.27-3ubuntu1_amd64.deb
 apt-get install -fy ./libc6_2.27-3ubuntu1_amd64.deb
 apt-get install -fy ./libc6-dev_2.27-3ubuntu1_amd64.deb
+apt-get install -fy ./libc-bin_2.27-3ubuntu1_amd64.deb
 
 # Clone the latest code from GitHub
 /usr/bin/git clone --depth 1 https://github.com/tensorflow/models.git tensorflow-models
