@@ -28,8 +28,8 @@ RUN git clone --branch ${HA_VERSION} https://www.github.com/home-assistant/home-
     pip3 install --no-cache-dir mysqlclient psycopg2 uvloop==0.12.2 cchardet cython
 
 RUN cd /tmp; \
-    curl -LO https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.12.0-py37-cpu-westmere/tensorflow-1.12.0-cp37-cp37m-linux_x86_64.whl && \
-    pip3 install --no-cache-dir tensorflow-1.12.0-cp37-cp37m-linux_x86_64.whl && \
+    curl -LO https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.8-cpu-westmere/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl && \
+    pip3 install --no-cache-dir $(find tensorflow*.whl) && \
     pip3 install opencv-python 
 
 RUN cd /tmp; \
