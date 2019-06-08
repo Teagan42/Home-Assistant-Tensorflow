@@ -35,7 +35,7 @@ RUN cd /tmp; \
 
 COPY startup.sh startup.sh
 
-RUN cd /tmp; \
-    /bin/bash startup.sh
+#RUN cd /tmp; \
+#    /bin/bash startup.sh
 
 CMD [ "/usr/local/bin/python", "-m", "homeassistant", "--config", "/usr/src/app" ]
