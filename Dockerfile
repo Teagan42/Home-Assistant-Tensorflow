@@ -4,7 +4,7 @@
 
 FROM python:3.6
 
-ARG HA_VERSION=0.92.2
+ARG HA_VERSION=0.88.1
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Uncomment any of the following lines to disable the installation.
@@ -35,7 +35,6 @@ RUN cd /tmp; \
 
 COPY startup.sh startup.sh
 
-RUN cd /tmp; \
-    /bin/bash startup.sh
+CMD [ "/bin/bash", "/usr/src/app/startup.sh", "/config", "/usr/src/app" ]
 
-CMD [ "/usr/local/bin/python", "-m", "homeassistant", "--config", "/usr/src/app" ]
+#CMD [ "python", "-m", "homeassistant", "--config", "/config" ]
